@@ -1,0 +1,15 @@
+{
+  "name": "debug-api",
+  "version": "1.0.0",
+  "description": "Different debug types",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Zorty",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0"
+  }
+}
