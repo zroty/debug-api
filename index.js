@@ -1,15 +1,20 @@
+
+
 let { blue, red, yellow }
                         = require('colors')
 
 let debugTypes = {
     info: {
-        color:   blue
+        color:   blue,
+        prefix: 'SUCCESS'
     },
     error: {
         color: red,
+        prefix: 'ERROR',
     },
     warning: {
         color: yellow,
+        prefix: 'WARNING'
     }
 }
 
@@ -17,7 +22,7 @@ let debugTypes = {
 function debug(debugType, outputDebug) {
     if (debugType) {
         if (outputDebug) {
-            console.log(debugTypes[debugType].color(outputDebug));
+            console.log( '[' + debugTypes[debugType].color(debugTypes[debugType]['prefix']) + ']: ' + outputDebug);
         } else {
             console.log('No second value, error, or debug value is specified.')
         }
@@ -26,4 +31,5 @@ function debug(debugType, outputDebug) {
     }
 };
 
-module.exports.add = debug
+
+module.exports = debug

@@ -1,6 +1,6 @@
 {
-  "name": "debug-api",
-  "version": "1.0.0",
+  "name": "debugt-api",
+  "version": "1.0.1",
   "description": "Different debug types",
   "main": "index.js",
   "scripts": {
