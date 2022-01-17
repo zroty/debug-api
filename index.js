@@ -18,18 +18,54 @@ let debugTypes = {
     }
 }
 
+async function debug_async({debugType = undefined, outputDebug = undefined}) {
 
-function debug(debugType, outputDebug) {
-    if (debugType) {
-        if (outputDebug) {
-            console.log( '[' + debugTypes[debugType].color(debugTypes[debugType]['prefix']) + ']: ' + outputDebug);
-        } else {
-            console.log('No second value, error, or debug value is specified.')
-        }
-    } else {
-        console.log('No debug value specified.')
-    }
-};
+    let promise = new Promise((resolve, reject) => {
+        if (!debugType) return console.log( '[' + debugTypes[debugType].color(debugTypes['error']['prefix']) + ']: ' + "No debug value specified.");
+
+        if (!outputDebug) return console.log( '[' + debugTypes[debugType].color(debugTypes['error']['prefix']) + ']: ' + "No second value  , error or debug valie is specified.");
+    
+        resolve( '[' + debugTypes[debugType].color(debugTypes[debugType]['prefix']) + ']: ' + outputDebug);
+    
+    
+    })
+
+    return promise;
+
+} 
+
+function debug_onConsole({debugType = undefined, outputDebug = undefined}) {
+    
+    if (!debugType) return console.log( '[' + debugTypes[debugType].color(debugTypes['error']['prefix']) + ']: ' + "No debug value specified.");
+
+    if (!outputDebug) return console.log( '[' + debugTypes[debugType].color(debugTypes['error']['prefix']) + ']: ' + "No second value  , error or debug valie is specified.");
 
 
-module.exports = debug
+    console.log( '[' + debugTypes[debugType].color(debugTypes[debugType]['prefix']) + ']: ' + outputDebug);
+
+}
+
+function simpleDebug({debugType = undefined, outputDebug = undefined}) {
+
+    if (!debugType) return console.log( '[' + debugTypes[debugType].color(debugTypes['error']['prefix']) + ']: ' + "No debug value specified.");
+
+    if (!outputDebug) return console.log( '[' + debugTypes[debugType].color(debugTypes['error']['prefix']) + ']: ' + "No second value  , error or debug valie is specified.");
+
+    let _output = "";
+
+    _output ='[' + debugTypes[debugType].color(debugTypes[debugType]['prefix']) + ']: ' + outputDebug;
+    return _output;
+
+}
+
+
+// debug_async({
+//     debugType: "error",
+//     outputDebug: "asdasdasdasd"
+// }).then((output) => {
+//     console.log(output) // async
+// });
+
+
+
+module.exports = {debug_async, debug_onConsole, simpleDebug}
